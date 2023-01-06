@@ -1,5 +1,7 @@
 #include <stddef.h>
 
+//Un strlen qui s'arrete des qu'il y a un caractere de *reject present dans *s
+
 int is_rej(const char letter, const char *reject)
 {
     int i = 0;

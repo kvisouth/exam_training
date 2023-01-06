@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+//Check separateur
 int is_sep(char c)
 {
     if (c == ' ' || c == '\n' || c == '\t')
@@ -8,6 +9,7 @@ int is_sep(char c)
     return(0);
 }
 
+//Compteur longueur d'un mot
 int wdlen(char *str)
 {
     int i = 0;
@@ -20,6 +22,7 @@ int wdlen(char *str)
     return(i);
 }
 
+//Compteur longueur **tableau
 int tablen(char *str)
 {
     int i = 0;
@@ -36,6 +39,7 @@ int tablen(char *str)
     return(c);
 }
 
+//Strdup de 0 a separateur
 char *word(char *str)
 {
     int len = wdlen(str);
@@ -60,13 +64,19 @@ char **ft_split(char *str)
         return(NULL);
     while (*str)
     {
+        //Tant qu'on est sur un separateur, incremente str. (et pas i)
         while (is_sep(*str) == 1 && *str)
             str++;
+
+        //Mettre word(str) dans le tableau[i]
+        //Incrementer i pour passer au prochain tableau.
         if (*str)
         {
             split[i] = word(str);
             i++;
         }
+
+        //Tant qu'on est sur le mot, incremente str (car on l'a deja ajouter a split[i], on peut le skip)
         while (is_sep(*str) == 0 && *str)
             str++;
     }
