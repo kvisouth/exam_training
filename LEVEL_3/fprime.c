@@ -9,11 +9,15 @@ int		main(int ac, char **av)
 {
     if(ac == 2)
     {
+
         int nb = atoi(av[1]);
+
+        //Cas speciaux 0 et 1
         if (nb < 0)
             return(printf("\n"), 0);
         if (nb == 1)
             printf("1");
+        
         else
         {
             int prime = 2;
