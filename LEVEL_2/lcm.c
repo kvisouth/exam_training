@@ -1,7 +1,7 @@
 //Calcule le plus petit multiple commun (FR: PPCM, EN: LCM) entre 'a' et 'b'.
 
-//Fait une boucle infinie qui se termine lorsque n sera un multiple de 'a' ET 'b'
-//Elle incremente n tant que ce n'est pas le cas.
+//'n' qui est une copie du plus grand entre 'a' et 'b'.
+//Incremente 'n' tant que c'est pas un multiple de 'a' ET 'b'.
 unsigned int lcm(unsigned int a, unsigned int b)
 {
     unsigned int n;
