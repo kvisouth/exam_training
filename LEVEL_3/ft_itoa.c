@@ -1,4 +1,5 @@
 #include <stdlib.h>
+//Du par coeur ngl
 
 //Compte la longueur d'un nombre pour malloc dans str.
 int nblen(int nb)

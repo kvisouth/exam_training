@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+//Du par coeur ngl
 
 //Check separateur
 int is_sep(char c)
