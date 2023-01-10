@@ -10,7 +10,7 @@ int main (int ac, char **av)
 
         while(str[i])
         {
-            // j = le caractere apres un separateur (debut d'un)
+            // j = le caractere apres un separateur (debut d'un mot)
             if ((str[i] == ' ' || str[i] == '\t') && (str[i + 1] >= '!' && str[i + 1] <= '~'))
                 j = i + 1;
             i++;
