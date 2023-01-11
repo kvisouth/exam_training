@@ -1,4 +1,6 @@
 #include <unistd.h>
+//Ecrire 1er mot apres le dernier mot.
+//Ecrire le mot de debut a la fin.
 
 int main(int ac, char **av)
 {
