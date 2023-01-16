@@ -5,9 +5,11 @@
 int is_power_of_2(unsigned int n)
 {
     unsigned int nb = 1;
-    int ntm = n;
-    if (ntm < 0) //trop relou
-        return 0;
+
+    int ntm = n;    //
+    if (ntm < 0)    // juste pour proteger si n est negatif alors que c'est un unsigned bref trop chiant
+        return 0;   //
+    
     while(nb <= n)
     {
         if (nb == n)

@@ -1,5 +1,10 @@
 #include <unistd.h>
 
+//En gros, dans un premier temps, on incremente i jusqu'a la fin.
+// a chaque fois que i est un separateur et i+1 est une lettre, j prend la valeur de i+1
+// C'est a dire la 1ere lettre d'un mot.
+//
+//Ensuite on write tant que j est un printable hors separateurs. (de ! a ~)
 int main (int ac, char **av)
 {
     if (ac == 2)
