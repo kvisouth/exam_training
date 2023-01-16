@@ -1,4 +1,6 @@
 //La structure est donnee dans le subject.txt
+//Il faut mettre sa dans ft_list.h
+//#include "ft_list.h"
 typedef struct    s_list
 {
 	struct s_list *next;
