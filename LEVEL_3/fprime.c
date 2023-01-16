@@ -26,12 +26,20 @@ int		main(int ac, char **av)
             int prime = 2;
             while (nb > 1)
             {
+                //Si prime est un diviseur de nb.
                 if (nb % prime == 0)
                 {
+                    // 1. Print le diviseur (prime)
                     printf("%d", prime);
+
+                    // 2. Divise nb par prime.
                     nb /= prime;
-                    if (nb > 1) // Pour pas mettre de '*' a la fin.
+
+                    // 3. Print un '*' si nb > 1
+                    if (nb > 1)
                         printf("*");
+
+                    // 4. Decremente prime de 1.
                     prime--;
                 }
                 prime++;
