@@ -12,12 +12,15 @@ int		main(int ac, char **av)
 
         int nb = atoi(av[1]);
 
-        //Cas speciaux 0 et 1
+        //Cas special nb negatif
         if (nb < 0)
             return(printf("\n"), 0);
+
+        //Cas special nb = 1
         if (nb == 1)
             printf("1");
         
+        //Le vrai programme
         else
         {
             int prime = 2;
@@ -27,7 +30,7 @@ int		main(int ac, char **av)
                 {
                     printf("%d", prime);
                     nb /= prime;
-                    if (nb > 1)
+                    if (nb > 1) // Pour pas mettre de '*' a la fin.
                         printf("*");
                     prime--;
                 }
