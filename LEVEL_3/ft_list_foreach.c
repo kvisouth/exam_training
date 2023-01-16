@@ -8,14 +8,14 @@ typedef struct    s_list
     void          *data;
 }                 t_list;
 
+//Applique la fonction (*f) a chaque element 'data' de la liste t_list.
 void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
 {
-	t_list *list_ptr;
+	t_list *list_ptr = begin_list;
 
-	list_ptr = begin_list;
 	while (list_ptr)
 	{
 		(*f)(list_ptr->data);
-		list_ptr = list_ptr->next;
+		list_ptr = list_ptr -> next;
 	}
 }
