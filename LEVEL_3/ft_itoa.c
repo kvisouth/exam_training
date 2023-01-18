@@ -23,8 +23,9 @@ int nblen(int nb)
 
 //En gros on prend nb, et on met les chiffres dans str de droite a gauche.
 //Pas besoin de verifier le int min pour exam
-char *ft_itoa(int nb)
+char *ft_itoa(int nbr)
 {
+    long nb = nbr; //on met nbr dans un long pour gerer int min int max, c'est pas verrifie dans grademe mais a l'examen il faut le faire je me suis fait avoir
     int i = nblen(nb);
     char *str = malloc(i + 1);
     if (!str)
