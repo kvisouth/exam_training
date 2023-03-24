@@ -1,6 +1,5 @@
 #include <stdarg.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <stdio.h>
 
 // Faire 5 Fonctions "utils"
@@ -12,13 +11,11 @@
 int	ft_putstr(char *s)
 {
     int i = 0;
+
 	if (s)
 	{
 		while (s[i])
-		{
-			write (1, &s[i], 1);
-			i++;
-		}
+			write (1, &s[i++], 1);
 		return (i);
 	}
 	return (ft_putstr("(null)"));
@@ -37,6 +34,7 @@ int	ft_putchar(char c)
 int	ft_putnbr(long int nb)
 {
     int len = 0;
+
 	if (nb < 0)
 	{
 		len += ft_putchar('-');
@@ -56,6 +54,7 @@ int	ft_putnbr(long int nb)
 int	ft_puthex(unsigned long nbr, char caps)
 {
 	int	len = 0;
+
 	if (nbr >= 16)
 	{
 		len += ft_puthex((nbr / 16), caps);
@@ -82,26 +81,20 @@ int	ft_putptr(unsigned long ptr)
 	return (count);
 }
 
-// C --> putchar
-// S --> putstr
-// P --> putptr
-// D --> putnbr
-// I --> putnbr
-// U --> putnbr
-// X --> puthex
-// x --> puthex
-// % --> putchar
-
-static int	ft_convert(const char letter, va_list args)
+// cspdiuxX%
+int	ft_convert(const char letter, va_list args)
 {
 	int	count = 0;
+
 	if (letter == 'c')
 		count += ft_putchar(va_arg(args, int));
 	else if (letter == 's')
 		count += ft_putstr(va_arg(args, char *));
 	else if (letter == 'p')
 		count += ft_putptr(va_arg(args, unsigned long));
-	else if (letter == 'd' || letter == 'i')
+	else if (letter == 'd')
+		count += ft_putnbr(va_arg(args, int));
+	else if (letter == 'i')
 		count += ft_putnbr(va_arg(args, int));
 	else if (letter == 'u')
 		count += ft_putnbr(va_arg(args, unsigned int));
@@ -116,21 +109,28 @@ static int	ft_convert(const char letter, va_list args)
 
 int	ft_printf(const char *format, ...)
 {
-	int			index = 0;
+	int			i = 0;
 	int			count = 0;
 	va_list		args;
+
 	va_start (args, format);
-	while (format[index])
+	while (format[i])
 	{
-		if (format[index] == '%')
+		if (format[i] == '%')
 		{
-			count += ft_convert(format[index + 1], args);
-			index++;
+			count += ft_convert(format[i + 1], args);
+			i++;
 		}
 		else
-			count += ft_putchar(format[index]);
-		index++;
+			count += ft_putchar(format[i]);
+		i++;
 	}
 	va_end(args);
 	return (count);
+}
+
+int main (int ac, char **av)
+{
+	if (ac == 2)
+		ft_printf("Hello %s\n", av[1]);
 }
