@@ -2,75 +2,60 @@
 #include <unistd.h>
 #include <stdio.h>
 
-// Faire 5 Fonctions "utils"
-// ft_putstr, ft_putchar, ft_putnbr, ft_puthex, ft_putptr
-// Puis faire printf.
-
-// Faire une fonction putstr
-// putstr normal mais qui compte le nombre de caractères qu'il a écrit et le renvoie.
-int	ft_putstr(char *s)
+int	ft_putstr(char *str)
 {
     int i = 0;
-
-	if (s)
+	if (str)
 	{
-		while (s[i])
-			write (1, &s[i++], 1);
+		while (str[i])
+			write (1, &str[i++], 1);
 		return (i);
 	}
-	return (ft_putstr("(null)"));
+	return ft_putstr("(null)");
 }
 
-// Faire une function putchar
-// putchar normal mais renvoie 1 (car il a ecrit 1 caractère)
 int	ft_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-// Faire une fonction putnbr
-// Pareil, il renvoie le nombre de caractères qu'il a écrit.
 int	ft_putnbr(long int nb)
 {
-    int len = 0;
-
+    int count = 0;
 	if (nb < 0)
 	{
-		len += ft_putchar('-');
+		count += ft_putchar('-');
 		nb *= -1;
 	}
 	if (nb >= 10)
 	{
-		len += ft_putnbr(nb / 10);
-		len += ft_putnbr(nb % 10);
+		count += ft_putnbr(nb / 10);
+		count += ft_putnbr(nb % 10);
 	}
 	else
-		len += ft_putchar(nb + 48);
-	return (len);
+		count += ft_putchar(nb + 48);
+	return count;
 }
 
-// Faire une fonction puthex
 int	ft_puthex(unsigned long nbr, char caps)
 {
-	int	len = 0;
-
+	int	count = 0;
 	if (nbr >= 16)
 	{
-		len += ft_puthex((nbr / 16), caps);
-		len += ft_puthex((nbr % 16), caps);
+		count += ft_puthex((nbr / 16), caps);
+		count += ft_puthex((nbr % 16), caps);
 	}
 	else
 	{
 		if (nbr < 10)
-			len += ft_putnbr(nbr);
+			count += ft_putnbr(nbr);
 		else
-			len += ft_putchar(nbr - 10 + 'a' + caps - 'x');
+			count += ft_putchar(nbr - 10 + 'a' + caps - 'x');
 	}
-	return (len);
+	return count;
 }
 
-// Faire une fonction putptr
 int	ft_putptr(unsigned long ptr)
 {
 	int	count = 0;
@@ -78,10 +63,9 @@ int	ft_putptr(unsigned long ptr)
 		return (ft_putstr("(nil)"));
 	count += ft_putstr("0x");
 	count += ft_puthex(ptr, 'x');
-	return (count);
+	return count;
 }
 
-// cspdiuxX%
 int	ft_convert(const char letter, va_list args)
 {
 	int	count = 0;
@@ -127,10 +111,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (count);
-}
-
-int main (int ac, char **av)
-{
-	if (ac == 2)
-		ft_printf("Hello %s\n", av[1]);
 }
