@@ -17,11 +17,8 @@ int check (char c, char *str, int x)
 	int i = 0;
 
 	while (i < x)
-	{
-		if (str[i] == c)
+		if (str[i++] == c)
 			return 0;
-		i++;
-	}
 	return 1;
 }
 

@@ -17,8 +17,8 @@ int	iter(char c, char *str, int x)
 
 	while (str[i] && (i < x || x == -1))
 		if (str[i++] == c)
-			return (1);
-	return (0);
+			return 0;
+	return 1;
 }
 
 // En gros ce programme fait :
@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 	{
 		while (s1[i])
 		{
-			if (!iter(s1[i], s1, i) && iter(s1[i], s2, -1))
+			if (iter(s1[i], s1, i) && !iter(s1[i], s2, -1))
 				write(1, &s1[i], 1);
 			i++;
 		}
