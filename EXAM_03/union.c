@@ -8,8 +8,7 @@
 // Exemple : ./union "abc" "def" affiche "abcdef"
 // Exemple : ./union "abc" "abf" affiche "abcf"
 // Exemple : ./union "POP" "BOB" affiche "POB"
-// Si il n'y a pas exactement 2 arguments, le programme affiche "\n"
-// Affiche aussi "\n" si le programme est correctement execute.
+// Affiche un seul \n quoi qu'il arrive.
 
 // Fonction qui verifie si :
 // - le caractere c est present dans la chaine str jusqu'a l'index x
@@ -40,22 +39,15 @@ int main (int ac, char **av)
 
 	if (ac == 3)
 	{
-		// on met i a la fin de s1
 		while (s1[i])
 			i++;
-
-		// on copie s2 dans s1
 		while (s2[j])
 		{
 			s1[i] = s2[j];
 			i++;
 			j++;
 		}
-
-		// on recule i de 1 pour partir du \0
 		i--;
-
-		// on affiche s1 sans les doublons
 		while (k <= i)
 		{
 			if (check(s1[k], s1, k) == 1)
