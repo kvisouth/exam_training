@@ -2,6 +2,27 @@
 #include <unistd.h>
 #include <stdio.h>
 
+// Il faut faire 6 fonctions pour printf.
+// - ft_putstr : affiche la chaine de caractère passée en paramètre.
+//			Elle renvoie le nombre de caractères affichés (i)
+//
+// - ft_putchar : affiche le caractère passé en paramètre.
+//			Elle renvoie 1 (car un seul caractère a été affiché)
+//
+// - ft_putnbr : affiche l’entier passé en paramètre. (int)
+//			Elle renvoie le nombre de caractères affichés (count)
+//
+// - ft_puthex : affiche l’entier passé en paramètre en hexadécimal.
+//			Elle renvoie le nombre de caractères affichés (count)
+//
+// - ft_putptr : Affiche 0x suivi d'un hexadécimal. (celui en paramètre)
+//			Elle renvoie le nombre de caractères affichés (count)
+//
+// - ft_convert : Va permettre a printf de choisir la bonne fonction parmis
+//			les 5 précédentes. (ft_putstr, ft_putchar, ft_putnbr, ft_puthex, ft_putptr)
+//			Selon la lettre passée en paramètre. (cspdiuxX%).
+//			Elle renvoie le nombre de caractères affichés (count)
+
 int	ft_putstr(char *str)
 {
     int i = 0;
@@ -38,20 +59,20 @@ int	ft_putnbr(long int nb)
 	return count;
 }
 
-int	ft_puthex(unsigned long nbr, char caps)
+int	ft_puthex(unsigned long nb, char caps)
 {
 	int	count = 0;
-	if (nbr >= 16)
+	if (nb >= 16)
 	{
-		count += ft_puthex((nbr / 16), caps);
-		count += ft_puthex((nbr % 16), caps);
+		count += ft_puthex((nb / 16), caps);
+		count += ft_puthex((nb % 16), caps);
 	}
 	else
 	{
-		if (nbr < 10)
-			count += ft_putnbr(nbr);
+		if (nb < 10)
+			count += ft_putnbr(nb);
 		else
-			count += ft_putchar(nbr - 10 + 'a' + caps - 'x');
+			count += ft_putchar(nb - 10 + 'a' + caps - 'x');
 	}
 	return count;
 }
@@ -66,6 +87,15 @@ int	ft_putptr(unsigned long ptr)
 	return count;
 }
 
+// cspdiuxX%
+// c : int
+// s : char *
+// p : unsigned long
+// d : int
+// i : int
+// u : unsigned int
+// x : unsigned int
+// X : unsigned int
 int	ft_convert(const char letter, va_list args)
 {
 	int	count = 0;
@@ -88,7 +118,7 @@ int	ft_convert(const char letter, va_list args)
 		count += ft_puthex(va_arg(args, unsigned int), 'X');
 	else if (letter == '%')
 		count += ft_putchar(letter);
-	return (count);
+	return count;
 }
 
 int	ft_printf(const char *format, ...)
@@ -110,5 +140,5 @@ int	ft_printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
-	return (count);
+	return count;
 }
