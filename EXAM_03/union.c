@@ -28,11 +28,11 @@ int check (char c, char *str, int x)
 // puis on affiche s1 sans les doublons avec k
 int main (int ac, char **av)
 {
-	int i = 0; // index qui se placera sur la derniere lettre de s1
-	int j = 0; // index de s2 qui permettra de copier s2 dans s1
-	int k = 0; // index de s1 qui permettra d'ecrire s1 jusqu'a i sans les doublons
-	char *s1 = av[1]; // copie des arguments pour + de lisibilite
-	char *s2 = av[2]; // copie des arguments pour + de lisibilite
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	char *s1 = av[1];
+	char *s2 = av[2];
 
 	if (ac == 3)
 	{
