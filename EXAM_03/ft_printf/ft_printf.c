@@ -1,10 +1,9 @@
 #include <unistd.h>
 #include <stdarg.h>
-#include <stdio.h>
 
 int ft_putchar(char c)
 {
-    write(1,&c,1);
+    write(1, &c, 1);
     return 1;
 }
 
@@ -14,7 +13,7 @@ int ft_putstr(char *str)
     if (str)
     {
         while (str[i])
-            write(1,&str[i++],1);
+            write(1, &str[i++], 1);
         return i;
     }
     return (ft_putstr("(null)"));
@@ -30,8 +29,8 @@ int ft_putnbr(long int nb)
     }
     if (nb >= 10)
     {
-        count += ft_putnbr(nb/10);
-        count += ft_putnbr(nb%10);
+        count += ft_putnbr(nb / 10);
+        count += ft_putnbr(nb % 10);
     }
     else
         count += ft_putchar(nb + 48);
@@ -43,8 +42,8 @@ int ft_puthex(unsigned long nb, char caps)
     int count = 0;
     if (nb >= 16)
     {
-        count += ft_puthex(nb/16, caps);
-        count += ft_puthex(nb%16, caps);
+        count += ft_puthex(nb / 16, caps);
+        count += ft_puthex(nb % 16, caps);
     }
     else
     {
@@ -66,7 +65,6 @@ int ft_putptr(unsigned long ptr)
     return count;
 }
 
-//cspdiuxX%
 int convert(const char c, va_list arg)
 {
     int count = 0;
@@ -91,24 +89,21 @@ int convert(const char c, va_list arg)
     return count;
 }
 
-int	ft_printf(const char *format, ...)
+int ft_printf(const char *str, ...)
 {
     int i = 0;
     int count = 0;
     va_list arg;
 
-	va_start (arg, format);
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			count += convert(format[i + 1], arg);
-			i++;
-		}
-		else
-			count += ft_putchar(format[i]);
-		i++;
-	}
-	va_end(arg);
-	return count;
+    va_start(arg, str);
+    while(str[i])
+    {
+        if (str[i] == '%')
+            count += convert(str[i++ + 1], arg);
+        else
+            count += ft_putchar(str[i]);
+        i++;
+    }
+    va_end(arg);
+    return count;
 }
